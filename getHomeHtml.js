@@ -128,6 +128,9 @@ export function getHomeHtml(userData) {
             <p><b>User ID:</b> ${userData.sub}</p>
             <a href="${userData.profile}" target="_blank" class="button-link">🔗 View on Roblox</a>
             <a href="/logout" class="button-link">Logout</a>
+
+
+            <p>You are now authenticated and can use our service.</p>
         </body>
         </html>
     `;

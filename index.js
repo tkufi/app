@@ -15,6 +15,7 @@ const app = express();
 const port = process.env.ROBLOX_PORT || 3000;
 const clientId = process.env.ROBLOX_CLIENT_ID;
 const clientSecret = process.env.ROBLOX_CLIENT_SECRET;
+const domain = process.env.ROBLOX_DOMAIN || "${domain}";
 
 // Generating a new secret at runtime invalidates existing cookies if the server restarts.
 // Set your own constant cookie secret if you want to keep them alive despite server restarting.
@@ -40,7 +41,7 @@ async function main() {
     const client = new issuer.Client({
         client_id: clientId,
         client_secret: clientSecret,
-        redirect_uris: [`http://localhost:${port}/oauth/callback`],
+        redirect_uris: [`http://${domain}:${port}/oauth/callback`],
         response_types: ["code"],
         scope: "openid profile universe-messaging-service:publish",
         id_token_signed_response_alg: "ES256",
@@ -100,7 +101,7 @@ async function main() {
     app.get("/oauth/callback", async (req, res) => {
         const params = client.callbackParams(req);
         const tokenSet = await client.callback(
-            `http://localhost:${port}/oauth/callback`,
+            `http://${domain}:${port}/oauth/callback`,
             params,
             {
                 state: req.signedCookies.state,

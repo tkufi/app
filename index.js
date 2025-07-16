@@ -11,6 +11,7 @@ import { Issuer, TokenSet, custom, generators } from "openid-client";
 import { getHomeHtml } from "./getHomeHtml.js";
 import { privacy } from "./privacy.js";
 import { terms } from "./terms.js";
+import { login } from "./login.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -97,7 +98,8 @@ async function main() {
         }
 
         // Clear cookies and redirect back to index (which will lead back to login)
-        res.clearCookie("tokenSet").redirect("/");
+        res.clearCookie("tokenSet");
+        res.send(login());
     });
 
     app.get("/oauth/callback", async (req, res) => {

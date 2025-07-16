@@ -9,6 +9,8 @@
 import express from "express";
 import { Issuer, TokenSet, custom, generators } from "openid-client";
 import { getHomeHtml } from "./getHomeHtml.js";
+import { privacy } from "./privacy.js";
+import { terms } from "./terms.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -122,6 +124,14 @@ async function main() {
 
         // Construct the HTML response with user information from the token claims
         res.send(getHomeHtml(tokenSet.claims()));
+    });
+
+    app.get("/legal/privacy", (req, res) => {
+        res.send(privacy());
+    });
+
+    app.get("/legal/terms", (req, res) => {
+        res.send(terms());
     });
 
     app.post("/message", checkLoggedIn, async (req, res) => {

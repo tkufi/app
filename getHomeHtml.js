@@ -128,19 +128,6 @@ export function getHomeHtml(userData) {
             <p><b>User ID:</b> ${userData.sub}</p>
             <a href="${userData.profile}" target="_blank" class="button-link">🔗 View on Roblox</a>
             <a href="/logout" class="button-link">Logout</a>
-
-            <form action="/message" method="POST" class="message-form">
-                <div class="input-container">
-                    <input type="text" id="topic" name="topic" class="message-input" required placeholder="Topic">
-                </div>
-                <div class="input-container">
-                    <input type="text" id="universeId" name="universeId" class="message-input" required placeholder="Universe ID">
-                </div>
-                <div class="input-container">
-                    <input type="text" id="message" name="message" class="message-input" required placeholder="Message">
-                </div>
-                <button type="submit" class="message-button">Send Message</button>
-            </form>
         </body>
         </html>
     `;

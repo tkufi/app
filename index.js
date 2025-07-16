@@ -43,7 +43,7 @@ async function main() {
         client_secret: clientSecret,
         redirect_uris: [`https://${domain}/oauth/callback`],
         response_types: ["code"],
-        scope: "openid profile universe-messaging-service:publish",
+        scope: "openid profile",
         id_token_signed_response_alg: "ES256",
     });
 
